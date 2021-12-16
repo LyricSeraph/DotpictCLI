@@ -32,8 +32,6 @@ def init():
 
     with open(TOKEN_CONFIG_FILENAME) as f:
         TOKEN_CONFIG = json.load(f)
-    with open(OUTPUT_FILENAME, "w") as f:
-        pass
     try:
         with open(SAVE_FILENAME, "r") as f:
             SAVED_ID_RECORDS = json.load(f)
