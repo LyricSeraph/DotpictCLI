@@ -17,6 +17,7 @@ TOKEN_CONFIG = {}
 SAVED_ID_RECORDS = {}
 NEW_SAVED_ID_RECORDS = {}
 OUTPUT_DATA = []
+COLLECTED_WORK_IDS = set()
 
 TOKEN_CONFIG_FILENAME = "token-config.json"
 OUTPUT_FILENAME = "output.json"
@@ -47,7 +48,7 @@ def output():
 
     global OUTPUT_DATA
     with open(OUTPUT_FILENAME, "a+") as f:
-        f.write(json.dumps(OUTPUT_DATA))
+        f.write(json.dumps(OUTPUT_DATA, ensure_ascii=False))
     return 1
 
 
@@ -172,6 +173,7 @@ def get_extension(url):
 
 def get_by_user_id_work_id(user_id, username, work_id, title, url):
     global OUTPUT_DATA
+    global COLLECTED_WORK_IDS
     get_extension(url)
     record = {
         "user_id": user_id,
@@ -180,8 +182,10 @@ def get_by_user_id_work_id(user_id, username, work_id, title, url):
         "title": title,
         "url": url
     }
-    # print("record: " + json.dumps(record))
-    OUTPUT_DATA.append(record)
+    if work_id not in COLLECTED_WORK_IDS:
+        COLLECTED_WORK_IDS.add(work_id)
+        OUTPUT_DATA.append(record)
+        # print("record: " + json.dumps(record))
 
 
 def usage():
