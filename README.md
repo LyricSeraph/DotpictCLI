@@ -25,9 +25,9 @@ options:
 
 The script will output 2 files in a successful execution:
 
-1. output-json.txt
-    - Contains all the work records crawled in this execution row by row in json format.
-    - Rewrited on each execution.
+1. output.json
+    - Contains all the work records crawled in this execution in json list format.
+    - Rewritten on each execution.
 2. save.json
     - A maintained json map to max work id for each author.
     - Any work id not greater than specific value were ignored and let the script stop getting the next page. So you won't get duplicate records between successful executions.
