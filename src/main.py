@@ -20,7 +20,7 @@ OUTPUT_DATA = []
 COLLECTED_WORK_IDS = set()
 
 TOKEN_CONFIG_FILENAME = "token-config.json"
-OUTPUT_FILENAME = "output.json"
+OUTPUT_FILENAME = "output" + str(time.time()) + ".json"
 SAVE_FILENAME = "save.json"
 
 
@@ -47,9 +47,8 @@ def output():
         f.write(json.dumps(NEW_SAVED_ID_RECORDS))
 
     global OUTPUT_DATA
-    with open(OUTPUT_FILENAME, "a+") as f:
+    with open(OUTPUT_FILENAME, "w") as f:
         f.write(json.dumps(OUTPUT_DATA, ensure_ascii=False))
-    return 1
 
 
 def get_xtoken():
@@ -207,7 +206,7 @@ def main(argv):
     except getopt.GetoptError as err:
         # print help information and exit:
         print(str(err))  # will print something like "option -a not recognized"
-        help()
+        usage()
         return 2
 
     my_user_id = ''

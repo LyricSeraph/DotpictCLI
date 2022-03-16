@@ -11,7 +11,7 @@ A CLI tool for collecting images from [Dotpict](https://dotpict.net/)
 2. Run the python script
 
 ```
-usage: python src/main.py <options>
+usage: python3 src/main.py <options>
 options:
     --follower-user-id=
         Get dotpic records with this users follow list. e.g. --follower-user-id=123456
@@ -25,7 +25,7 @@ options:
 
 The script will output 2 files in a successful execution:
 
-1. output.json
+1. output{time}.json
     - Contains all the work records crawled in this execution in json list format.
     - Rewritten on each execution.
 2. save.json
